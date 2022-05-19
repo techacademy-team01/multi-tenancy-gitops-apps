@@ -1,0 +1,43 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: qmgr-demo
+  namespace: cp4i-mq
+spec:
+  annotations:
+    productMetric: FREE
+  license:
+    accept: true
+    license: L-RJON-C7QG3S
+    use: NonProduction
+  queueManager:
+    name: QMGRDEMO
+    resources:
+      limits:
+        cpu: 500m
+      requests:
+        cpu: 500m
+    storage:
+      queueManager:
+        type: persistent-claim
+      defaultClass: ibmc-block-gold
+    availability:
+      type: NativeHA
+    mqsc:
+      - configMap:
+          name: mqsc-mq-demo
+          items:
+            - mq-demo-resources.mqsc
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  version: 9.2.4.0-r1
+  web:
+    enabled: true
+  tracing:
+    enabled: true
+    namespace: cp4i-tracing
