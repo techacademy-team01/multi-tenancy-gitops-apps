@@ -5,11 +5,11 @@ echo "Building BAR Auth Configuration"
 ###################
 NS="tools"
 POLICY_NAME="github-barauth"
-BARAUTH_DATA=$(base64 template-ace-barauth-data.json)
+BARAUTH_DATA=$(base64 template-ace-barauth-data.json_template)
 ########################
 # CREATE CONFIGURATION #
 ########################
-( echo "cat <<EOF" ; cat template-ace-config-barauth.yaml ;) | \
+( echo "cat <<EOF" ; cat template-ace-config-barauth.yaml_template ;) | \
 NS=${NS} \
 POLICY_NAME=${POLICY_NAME} \
 BARAUTH_DATA=${BARAUTH_DATA} \

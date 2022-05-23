@@ -10,7 +10,7 @@ POLICY_NAME="ace-mq-policy"
 ##########################
 echo "Packaging Policy..."
 POLICY_BASE64_CONTENT=$(base64 CP4iQMGRDEMO.zip)
-( echo "cat <<EOF" ; cat template-ace-config-policy.yaml ;) | \
+( echo "cat <<EOF" ; cat template-ace-config-policy.yaml_template ;) | \
 NS=${NS} \
 POLICY_NAME=${POLICY_NAME} \
 POLICY_BASE64_CONTENT=${POLICY_BASE64_CONTENT} \
