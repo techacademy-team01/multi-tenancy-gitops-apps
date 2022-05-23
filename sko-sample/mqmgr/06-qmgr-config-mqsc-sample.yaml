@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mqsc-mq-demo
-  namespace: cp4i-mq
+  namespace: tools
 data:
   mq-demo-resources.mqsc: |
     ALTER QMGR CHLAUTH (DISABLED)

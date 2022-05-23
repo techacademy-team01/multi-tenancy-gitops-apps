@@ -2,7 +2,7 @@ apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
   name: qmgr-demo
-  namespace: cp4i-mq
+  namespace: tools
 spec:
   annotations:
     productMetric: FREE
@@ -40,4 +40,4 @@ spec:
     enabled: true
   tracing:
     enabled: true
-    namespace: cp4i-tracing
+    namespace: tools
