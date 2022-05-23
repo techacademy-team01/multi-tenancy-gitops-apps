@@ -1,0 +1,10 @@
+apiVersion: integration.ibm.com/v1beta2
+kind: OperationsDashboardServiceBinding
+metadata:
+  name: od-qmgr-demo-service-binding
+spec:
+  odNamespace: tools
+  odInstanceName: od-tracing
+  sourceInstanceName: qmgr-demo
+  sourcePodName: qmgr-demo-ibm-mq-0
+  sourceSecretName: "icp4i-od-store-cred"
