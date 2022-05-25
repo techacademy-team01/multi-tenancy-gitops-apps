@@ -1,0 +1,29 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  Namespace: tools
+  name: apic-job-role
+rules:
+- apiGroups: ["apiconnect.ibm.com"] 
+  resources: ["apiconnectclusters"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: ["route.openshift.io"] 
+  resources: ["routes"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: [""] 
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: apic-job-rolebinding
+  namespace: tools
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: tools
+roleRef:
+  kind: Role
+  name: apic-job-role
+  apiGroup: rbac.authorization.k8s.io
