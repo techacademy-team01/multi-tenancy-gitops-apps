@@ -1,10 +1,10 @@
 kind: Job
 apiVersion: batch/v1
 metadata:
-  name: apim-demo-setup-job
+  name: es-demo-setup-job
   namespace: tools
   labels:
-    job-name: apim-demo-setup-job
+    job-name: es-demo-setup-job
 spec:
   parallelism: 1
   completions: 1
@@ -14,20 +14,17 @@ spec:
     metadata:
       name: run
       labels:
-        job-name: apim-demo-setup-job
+        job-name: es-demo-setup-job
     spec:
       containers:
         - name: run
           image: 'quay.io/vbudi/apic-job:1.1'
           command:
-            - "/user1/apic-config.sh"
+            - "/user1/es-initial-config.sh"
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: Always
-          envFrom:
-          - secretRef:
-              name: apic-setup-mail
       restartPolicy: Never
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
