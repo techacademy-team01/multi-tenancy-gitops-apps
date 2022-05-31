@@ -1,0 +1,26 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: ibm-common-services
+  name: es-ics-job-role
+rules:
+- apiGroups: ["route.openshift.io"] 
+  resources: ["routes"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: [""] 
+  resources: ["secrets"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: es-ics-job-rolebinding
+  namespace: ibm-common-services
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: tools
+roleRef:
+  kind: Role
+  name: es-ics-job-role
+  apiGroup: rbac.authorization.k8s.io

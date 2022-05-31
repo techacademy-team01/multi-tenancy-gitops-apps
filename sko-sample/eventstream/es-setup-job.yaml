@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: run
-          image: 'quay.io/vbudi/apic-job:1.1'
+          image: 'quay.io/vbudi/sko-job:1.0'
           command:
             - "/user1/es-initial-config.sh"
           resources: {}
