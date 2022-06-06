@@ -1,0 +1,63 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name: jgr-designer-sfleads
+  namespace: tools
+spec:
+  adminServerSecure: true
+  createDashboardUsers: true
+  designerFlowsOperationMode: local
+  designerFlowsType: api-flows
+  enableMetrics: true
+  license:
+    accept: true
+    license: L-APEH-C9NCK6
+    use: CloudPakForIntegrationNonProduction
+  pod:
+    containers:
+      designereventflows:
+        resources:
+          limits:
+            cpu: 1
+            memory: 750Mi
+          requests:
+            cpu: 250m
+            memory: 400Mi
+      designerflows:
+        resources:
+          limits:
+            cpu: 250m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 512Mi
+      proxy:
+        resources:
+          limits:
+            cpu: 250m
+            memory: 256Mi
+          requests:
+            cpu: 50m
+            memory: 16Mi
+      runtime:
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+  replicas: 1
+  router:
+    timeout: 300s
+  service:
+    endpointType: http
+  version: '12.0'
+  barURL: >-
+    https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/SFLeads.bar
+  configurations:
+    - github-barauth
+    - ace-sf-designer-account
+  tracing:
+    enabled: true
+    namespace: tools

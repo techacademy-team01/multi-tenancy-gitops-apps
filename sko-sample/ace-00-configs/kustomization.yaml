@@ -1,0 +1,19 @@
+resources:
+# used by all
+- ace-config-barauth.yaml
+
+# used by mqapiprem, mqapidflt, fwdmqevnt, backend - accessing MQ
+- ace-config-policy-mq.yaml
+
+# used by sflead - Accessing salesforce API
+#- ace-config-accounts-designer.yaml
+
+# used by evnt2mail, fwdmqevnt - accessing EventStream
+#- ace-config-policy-es-scram.yaml
+#- ace-config-setdbparms-es-scram.yaml
+#- ace-config-truststore.yaml
+
+# used by evnt2mail - Sending email
+#- ace-config-policy-udp.yaml
+#- ace-config-policy-email.yaml
+#- ace-config-setdbparms-email.yaml
