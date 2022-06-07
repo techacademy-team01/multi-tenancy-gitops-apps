@@ -13,7 +13,7 @@ CONFIG_DESCRIPTION="Policy to connect to Demo Event Streams Cluster"
 # Updating ZIP file with EventServer address  #
 ####################################################
 echo "Packaging Policy..."
-unzip CP4IESDEMOSCRAM.zip
+unzip CP4IESDEMOSCRAM.template.zip
 ES_BOOTSTRAP_SERVER=$(oc get eventstreams ${ES_INST_NAME} -n ${ES_NAMESPACE} -o=jsonpath='{range .status.kafkaListeners[*]}{.type} {.bootstrapServers}{"\n"}{end}' | awk '$1=="external" {print $2}')
 ( echo "cat <<EOF" ; cat CP4IESDEMOSCRAM/es-demo.policyxml ;) | \
 ES_BOOTSTRAP_SERVER=${ES_BOOTSTRAP_SERVER} \
@@ -23,6 +23,7 @@ zip -r CP4IESDEMOSCRAM.zip CP4IESDEMOSCRAM
 CONFIG_CONTENT_BASE64=$(base64 CP4IESDEMOSCRAM.zip)
 #echo "Cleaning up temp files..."
 rm -rf CP4IESDEMOSCRAM
+rm CP4IESDEMOSCRAM.zip
 ( echo "cat <<EOF" ; cat template-ace-config-content.yaml_template ;) | \
 CONFIG_NAME=${CONFIG_NAME} \
 CONFIG_TYPE=${CONFIG_TYPE} \
